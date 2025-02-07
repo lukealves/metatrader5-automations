@@ -4,7 +4,7 @@
 
 <hr>
 
-# Coleta de Dados Financeiros com MetaTrader 5
+# Automação de Trading e Coleta de Dados Financeiros com MetaTrader 5
 
 Este projeto tem como objetivo automatizar a extração de dados históricos do MetaTrader 5 (MT5), permitindo que traders e analistas financeiros coletem informações do mercado de forma estruturada e eficiente. Utilizando Python e diversas bibliotecas, o código se conecta ao MT5, coleta dados de ativos específicos e oferece a opção de salvar essas informações em arquivos `.csv` ou `.xlsx`.
 
