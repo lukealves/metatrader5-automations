@@ -49,8 +49,10 @@ O código faz uso de diversas bibliotecas para diferentes finalidades:
 - **MetaTrader5 (mt5)**: Permite a conexão com a plataforma MT5 para coletar dados e enviar ordens de compra e venda.
 - **Pandas (pd)**: Essencial para manipulação de dados financeiros e organização das informações coletadas.
 - **Datetime**: Utilizado para gerenciar datas e horários dentro do processo de coleta.
+- **time**: Fornece diversas funções para manipulação do tempo.
 - **OS**: Facilita a manipulação de diretórios e arquivos do sistema.
 - **Tkinter e filedialog**: Responsáveis por criar interfaces gráficas para a seleção e salvamento de arquivos.
+- **IPython.display**: # Limpa a saída da célula de código, ou seja, remove a última impressão ou resultado exibido no notebook.
 - **Random**: Gera números aleatórios, caso necessário para testes ou simulações.
 
 ## Execução do Script
