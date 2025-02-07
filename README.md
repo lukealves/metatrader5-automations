@@ -179,7 +179,7 @@ Caso o timeframe seja inválido, o intervalo padrão é de 60 segundos.
 ### 4. Verificação do Mercado e Ordens Abertas
 O sistema entra em um loop infinito onde:
 - Verifica se o mercado está aberto para o ativo selecionado, utilizando a função `is_market_open`. Essa função verifica se o ativo está habilitado para trading e se é um dia útil (segunda a sexta-feira).
-- Verifica se há ordens abertas para o ativo, utilizando a função `check_open_positions`. Caso existam ordens abertas, o sistema aguarda antes de tomar novas decisões.
+- Verifica se há uma ordem aberta para o ativo, utilizando a função `check_open_positions`. Caso exista uma ordem aberta, o sistema aguarda até que ela seja encerrada antes de tomar novas decisões.
 
 ### 5. Execução da Negociação
 Se o mercado estiver aberto e não houver ordens abertas, o sistema executa uma decisão de negociação utilizando a função `make_trade_decision`. Após a execução, o sistema aguarda o intervalo de tempo definido antes de repetir o processo.
@@ -240,6 +240,7 @@ A função é chamada automaticamente pelo sistema de negociação quando as con
 > Compra ao preço 1.03269. Venda (take profit) ao preço 1.03308. Stop loss: 0.82647
 
 ### Considerações Importantes
-- **Fins Educacionais**: Esta função foi criada para **fins educacionais e de teste**. As condições de trading são generalistas e não refletem uma estratégia real ou assertiva.
-- **Revisão Necessária**: Caso o usuário queira utilizar o sistema para trading real, é **essencial revisar e adaptar** as condições e estratégias presentes na função.
-- **Simulação de Previsão**: A previsão de preço atual é apenas uma simulação para testes. Para uso real, recomenda-se a integração com um modelo de previsão confiável, como o LSTM originalmente utilizado.
+- **Sobre a Função**: Essa função só faz sentido se usada em conjunto com um modelo de previsão de séries temporais, como um LSTM.
+- **Estratégia Generalista**: Sem um modelo de previsão, as condições de trading se tornam generalistas e não refletem uma estratégia real ou assertiva. 
+- **Revisão Necessária**: Caso o usuário queira utilizar o sistema para trading real, é essencial **revisar e adaptar** as condições e estratégias presentes na função.
+- **Simulação de Previsão**: A previsão de preço atual presente na variável `predicted_close` é apenas uma simulação para testes. Para uso real, recomenda-se a integração com um modelo de previsão confiável, como o LSTM originalmente utilizado, ou uma fórmula consisa e bem estruturada.
