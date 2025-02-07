@@ -108,3 +108,131 @@ def save_file(data):
             data.to_excel(file_path, index=False, engine='openpyxl')
         print(f"Arquivo salvo em: {file_path}")
 ```
+
+### Exemplo de saída
+> Digite o símbolo do ativo (por exemplo, EURUSD):  USDCAD
+
+> Escolha o timeframe:
+
+> 1 - M1 (1 minuto)
+
+> 2 - M5 (5 minutos)
+
+> 3 - M15 (15 minutos)
+
+> 4 - M30 (30 minutos)
+
+> 5 - H1 (1 hora)
+
+> 6 - H4 (4 horas)
+
+> 7 - D1 (1 dia)
+
+> 8 - W1 (1 semana)
+
+> 9 - MN1 (1 mês)
+
+> Digite o número correspondente ao timeframe:  1
+
+> Digite o número de períodos desejados:  1000
+
+Será mostrado na tela, também, um breve dataframe mostrando os dados coletados e, feito isso, perguntar onde você quer salva-los, podendo ser selecionado o formato `.csv` ou `.xlsx`.
+
+> Arquivo salvo em: C:/Users/local_escolhido/datasets/USDCAD_M1_1000P.csv
+
+## Sistema de Negociação Automatizada no MetaTrader 5
+
+Para iniciar o sistema de negociação, basta chamar a função `executar_negociacao()`:
+
+```python
+# Executar negociação
+executar_negociacao()
+```
+
+### Como Funciona
+Este projeto implementa um sistema de negociação automatizada utilizando o MetaTrader 5 (MT5). A execução do sistema é iniciada com a chamada da função `executar_negociacao()`, que gerencia todo o processo de negociação com base nas entradas do usuário e nas condições do mercado.
+
+### 1. Inicialização do MetaTrader 5
+
+A função `executar_negociacao()` começa inicializando o MetaTrader 5. Caso a inicialização falhe, o sistema exibe uma mensagem de erro e encerra a execução.
+
+### 2. Entrada do Usuário
+O usuário é solicitado a fornecer:
+- O **símbolo do ativo** (por exemplo, `EURUSD`).
+- O **timeframe** desejado (como M1, H1, D1, etc.), que é mapeado para um valor numérico correspondente.
+- O **volume** da negociação, que é validado para garantir que esteja dentro do intervalo permitido (0.00 a 500.00).
+
+### 3. Definição do Intervalo de Loop
+O intervalo de tempo entre as verificações de mercado é definido com base no timeframe escolhido, utilizando a função `get_loop_interval`. Essa função mapeia o timeframe para um intervalo em segundos. Por exemplo:
+- M1 (1 minuto) -> 15 segundos.
+- H1 (1 hora) -> 30 minutos.
+
+Caso o timeframe seja inválido, o intervalo padrão é de 60 segundos.
+
+### 4. Verificação do Mercado e Ordens Abertas
+O sistema entra em um loop infinito onde:
+- Verifica se o mercado está aberto para o ativo selecionado, utilizando a função `is_market_open`. Essa função verifica se o ativo está habilitado para trading e se é um dia útil (segunda a sexta-feira).
+- Verifica se há ordens abertas para o ativo, utilizando a função `check_open_positions`. Caso existam ordens abertas, o sistema aguarda antes de tomar novas decisões.
+
+### 5. Execução da Negociação
+Se o mercado estiver aberto e não houver ordens abertas, o sistema executa uma decisão de negociação utilizando a função `make_trade_decision`. Após a execução, o sistema aguarda o intervalo de tempo definido antes de repetir o processo.
+
+### 6. Limpeza do Console
+A cada iteração, o console é limpo utilizando a função `clear_console`, que mantém a saída organizada e legível.
+
+### Exemplo de saída
+> Verificando ordens abertas para o ativo EURUSD:
+
+> DEBUG: Mercado aberto? True | Ordens abertas? None
+
+> Iniciando negociação para EURUSD...
+
+> Previsão de fechamento calculada: 1.03308
+
+> Ordem de compra enviada com sucesso, id da ordem: 52100431685
+
+> Compra ao preço 1.03269. Venda (take profit) ao preço 1.033083942179518. Stop loss: 0.8264671537436143
+
+> Negociação executada. Aguardando 300 segundos para a próxima verificação...
+
+## Função para Tomada de Decisão de Negócio no MetaTrader 5
+
+A função `make_trade_decision` é um exemplo de **trading algorítmico** que simula a tomada de decisões de compra ou venda com base em uma previsão de preço. É importante destacar que essa função foi desenvolvida para **fins de teste e execução de exemplo**, e **não deve ser utilizada como uma estratégia de trading real** sem revisões e adaptações. As condições de trading foram originalmente projetadas para funcionar em conjunto com um modelo de previsão LSTM (Long Short-Term Memory), que gerava previsões de preços armazenadas na variável `predicted_close`. No entanto, após a remoção do modelo LSTM, foi incluído um trecho de código que simula uma previsão de preço apenas para testes.
+
+### Como Funciona
+
+1. **Obtenção dos Preços Atuais**:
+   - A função começa obtendo os preços de **Bid** (compra) e **Ask** (venda) do ativo especificado (`symbol`) usando a função `mt5.symbol_info_tick`.
+
+2. **Simulação de Previsão de Preço**:
+   - Como o modelo LSTM foi removido, a função agora simula uma previsão de preço usando uma **média ponderada** entre os preços de Bid e Ask, com uma pequena variação aleatória de ±0.1%. Esse trecho é apenas para **testes de funcionamento** e não deve ser considerado uma previsão assertiva.
+   - Exemplo do código:
+     ```python
+     predicted_close = (current_ask * 0.7) + (current_bid * 0.3)  # Média ponderada
+     predicted_close *= 1 + random.uniform(-0.001, 0.001)  # Pequena variação aleatória
+     ```
+
+3. **Tomada de Decisão**:
+   - A função compara o preço previsto (`predicted_close`) com os preços atuais de Bid e Ask para decidir se deve **comprar** ou **vender** o ativo.
+   - Se o preço previsto for **maior** que os preços atuais, a decisão é de **compra**.
+   - Se o preço previsto for **menor**, a decisão é de **venda**.
+   - Caso o preço previsto seja **igual** aos preços atuais, nenhuma ação é tomada.
+
+4. **Definição de Stop Loss e Take Profit**:
+   - Para ordens de **compra**, o **take profit** é definido como o preço previsto, e o **stop loss** é calculado como 80% do take profit.
+   - Para ordens de **venda**, o **take profit** também é o preço previsto, e o **stop loss** é calculado como 120% do take profit.
+
+5. **Execução da Ordem**:
+   - Dependendo da decisão (compra ou venda), a função envia uma ordem limitada (`send_buy_limit_order` ou `send_sell_limit_order`) com os parâmetros definidos.
+
+### Exemplo de Uso
+A função é chamada automaticamente pelo sistema de negociação quando as condições de mercado são favoráveis (mercado aberto e sem ordens abertas). Um exemplo de saída no console seria:
+
+> Previsão de fechamento calculada: 1.03308
+
+> Compra ao preço 1.03269. Venda (take profit) ao preço 1.03308. Stop loss: 0.82647
+
+### Considerações Importantes
+- **Fins Educacionais**: Esta função foi criada para **fins educacionais e de teste**. As condições de trading são generalistas e não refletem uma estratégia real ou assertiva.
+- **Revisão Necessária**: Caso o usuário queira utilizar o sistema para trading real, é **essencial revisar e adaptar** as condições e estratégias presentes na função.
+- **Simulação de Previsão**: A previsão de preço atual é apenas uma simulação para testes. Para uso real, recomenda-se a integração com um modelo de previsão confiável, como o LSTM originalmente utilizado.
