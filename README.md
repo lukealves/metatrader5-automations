@@ -1,6 +1,7 @@
 <div align="center">
   <img src="imagens/cover.png" />
 </div>
+
 <hr>
 
 # Coleta de Dados Financeiros com MetaTrader 5
