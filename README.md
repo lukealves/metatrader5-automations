@@ -1,3 +1,8 @@
+<div align="center">
+  <img src="imagens/cover.png" />
+</div>
+<hr>
+
 # Coleta de Dados do MetaTrader 5
 
 Este projeto tem como objetivo automatizar a extração de dados históricos do MetaTrader 5 (MT5), permitindo que traders e analistas financeiros coletem informações de mercado de forma estruturada e eficiente. Utilizando Python e diversas bibliotecas, o código se conecta ao MT5, coleta dados de ativos específicos e oferece a opção de salvar essas informações em arquivos `.csv` ou `.xlsx`.
@@ -10,7 +15,20 @@ No entanto, posteriormente optei por simplificar a arquitetura, transferindo a i
 
 ## Pré-Requisitos
 
-Para executar este projeto, é necessário instalar o `Jupyter Notebook` ou o `Jupyter Lab`, além das bibliotecas que serão mencionadas a seguir. Também é preciso instalar o MetaTrader 5. Se você deseja apenas testar, pode baixá-lo diretamente no [site oficial](https://www.metatrader5.com/pt/download). Com a versão básica já é possível, em uma conta de demonstração, acessar uma ampla gama de dados do `Forex` e da `Nasdaq`. Caso queira acessar os dados da `Ibov`, mesmo em uma conta de teste, será necessário abrir conta em uma corretora.
+Para executar este projeto, é necessário instalar o `Jupyter Notebook` ou o `Jupyter Lab`, além das bibliotecas que serão mencionadas a seguir. Também é preciso instalar o MetaTrader 5. Se você deseja apenas testar, pode baixá-lo diretamente no [site oficial](https://www.metatrader5.com/pt/download). Com a versão básica já é possível, em uma conta de demonstração, acessar uma ampla gama de dados do `Forex`. Caso queira acessar os dados da `Ibov` ou da `Nasdaq`, mesmo em uma conta de teste, será necessário abrir conta em uma corretora.
+
+## Formato dos Dados Extraídos
+
+<div align="center">
+
+| DATE                | open    | high    | low     | close   | tick_volume | spread |
+| ------------------- | ------- | ------- | ------- | ------- | ----------- | ------ |
+| 2025-02-05 05:30:00 | 0.62544 | 0.62556 | 0.62531 | 0.62541 | 277         | 8      |
+| 2025-02-05 05:45:00 | 0.62541 | 0.62551 | 0.62499 | 0.62499 | 306         | 8      |
+| 2025-02-05 06:00:00 | 0.62499 | 0.62507 | 0.62475 | 0.62480 | 204         | 8      |
+| 2025-02-05 06:15:00 | 0.62481 | 0.62488 | 0.62454 | 0.62474 | 254         | 8      |
+
+</div>
 
 ## Funcionalidades Principais
 
