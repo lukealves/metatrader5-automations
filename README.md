@@ -52,7 +52,7 @@ O código faz uso de diversas bibliotecas para diferentes finalidades:
 - **time**: Fornece diversas funções para manipulação do tempo.
 - **OS**: Facilita a manipulação de diretórios e arquivos do sistema.
 - **Tkinter e filedialog**: Responsáveis por criar interfaces gráficas para a seleção e salvamento de arquivos.
-- **IPython.display**: # Limpa a saída da célula de código, ou seja, remove a última impressão ou resultado exibido no notebook.
+- **IPython.display**: Limpa a saída da célula de código, ou seja, remove a última impressão ou resultado exibido no notebook.
 - **Random**: Gera números aleatórios, caso necessário para testes ou simulações.
 
 ## Execução do Script
