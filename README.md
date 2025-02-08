@@ -1,3 +1,12 @@
+## <div align="center"> ⚠️ Disclaimer
+</div>
+
+**Atenção:** Este projeto é fornecido apenas para fins educacionais e de pesquisa. O autor não se responsabiliza por quaisquer resultados, perdas ou danos que possam ocorrer caso você decida utilizar este projeto em operações reais no mercado financeiro. O uso deste projeto é de sua inteira responsabilidade.
+
+O mercado financeiro envolve riscos significativos, incluindo a possibilidade de perda total do capital investido. Recomenda-se que você busque orientação de um profissional qualificado antes de tomar qualquer decisão de investimento.
+
+<hr>
+
 <div align="center">
   <img src="imagens/cover.png" />
 </div>
